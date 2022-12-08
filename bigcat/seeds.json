@@ -1,0 +1,12 @@
+[
+{
+  "model": "bigcat.bigcat",
+  "pk": 1,
+  "fields": {
+    "name": "Tiger",
+    "species": "Bengal",
+    "food": "moose, deer species, pigs, cows, horses, buffalos and goats",
+    "image": "Tiger"
+  }
+}
+]
