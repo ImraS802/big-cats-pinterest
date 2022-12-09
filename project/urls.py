@@ -18,6 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('bigcat/', include('bigcat.urls')),
-    path('auth/', include('jwt_auth.urls'))
+    path('api/bigcat/', include('bigcat.urls')),
+    path('api/auth/', include('jwt_auth.urls'))
 ]

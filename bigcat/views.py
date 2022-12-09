@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from .models import Bigcat
 from .serializers.common import BigcatSerializer
-#from .serializers.populated import PopulatedBigcatSerializer
+from .serializers.populated import PopulatedBigcatSerializer
 
 # Create your views here
 
@@ -16,8 +16,7 @@ class BigcatListView(APIView):
 
     def get(self, _request):     #get all bigcats
         bigcats = Bigcat.objects.all()
-        serialized_bigcat_list = BigcatSerializer(bigcats, many=True)
-        #serialized_bigcat_list = PopulatedBigcatSerializer(bigcats, many=True)
+        serialized_bigcat_list = PopulatedBigcatSerializer(bigcats, many=True)
 
         return Response(serialized_bigcat_list.data, status=status.HTTP_200_OK)
 
@@ -44,8 +43,7 @@ class BigcatDetailView(APIView):
 
     def get(self, _request, pk):
         bigcat = self.get_bigcat(pk=pk)     #get single bigcat
-        serialized_bigcat = BigcatSerializer(bigcat)
-        #serialized_bigcat = PopulatedBigcatSerializer(bigcat)
+        serialized_bigcat = PopulatedBigcatSerializer(bigcat)
 
         return Response(serialized_bigcat.data, status=status.HTTP_200_OK)
 
