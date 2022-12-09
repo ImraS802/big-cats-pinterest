@@ -13,13 +13,14 @@ from .serializers.common import BigcatSerializer
 
 class BigcatListView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
-    
+
     def get(self, _request):     #get all bigcats
         bigcats = Bigcat.objects.all()
-        serialized_bigcat_list = PopulatedBigcatSerializer(bigcats, many=True)
+        serialized_bigcat_list = BigcatSerializer(bigcats, many=True)
+        #serialized_bigcat_list = PopulatedBigcatSerializer(bigcats, many=True)
 
         return Response(serialized_bigcat_list.data, status=status.HTTP_200_OK)
-    
+
     def post(self, request):      #create a new bigcat
         request.data['owner'] = request.user.id
         bigcat_to_create = BigcatSerializer(data=request.data)
@@ -30,7 +31,7 @@ class BigcatListView(APIView):
 
 class BigcatDetailView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
-    
+
     def get_bigcat(self, pk):
         try:      #django try catch, returns a bigcat that exists, if not it returns not found
             return Bigcat.objects.get(pk=pk)
@@ -40,21 +41,23 @@ class BigcatDetailView(APIView):
     def is_bigcat_owner(self, bigcat, user):
         if bigcat.owner.id != user.id:
             raise PermissionDenied()
-        
+
     def get(self, _request, pk):
         bigcat = self.get_bigcat(pk=pk)     #get single bigcat
-        serialized_bigcat = PopulatedBigcatSerializer(bigcat)
+        serialized_bigcat = BigcatSerializer(bigcat)
+        #serialized_bigcat = PopulatedBigcatSerializer(bigcat)
+
         return Response(serialized_bigcat.data, status=status.HTTP_200_OK)
-    
+
     def put(self, request, pk):
         bigcat_to_update = self.get_bigcat(pk=pk)     #update bigcat
-        self.is_bigcat_owner(bigcat_to_update, request.user) 
+        self.is_bigcat_owner(bigcat_to_update, request.user)
         updated_bigcat = BigcatSerializer(bigcat_to_update, data=request.data)
         if updated_bigcat.is_valid():
             updated_bigcat.save()
             return Response(updated_bigcat.data, status=status.HTTP_202_ACCEPTED)
         return Response(updated_bigcat.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-    
+
     def delete(self, request, pk):     #delete bigcat
         bigcat_to_delete = self.get_bigcat(pk=pk)
         self.is_bigcat_owner(bigcat_to_delete, request.user)
