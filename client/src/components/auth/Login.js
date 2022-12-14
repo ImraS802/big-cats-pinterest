@@ -1,73 +1,73 @@
-import React from 'react'
+import { useState } from 'react'
 import { loginUser } from '../../lib/api'
 import { setToken } from '../../lib/auth'
+import { useNavigate } from 'react-router-dom'
 
-class Login extends React.Component {
-  state = {
-    formData: {
-      email: '',
-      password: ''
+const Login = () => {
+
+  const navigate = useNavigate()
+
+
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  })
+  
+  const handleChange = event => {
+    const formdata = {
+      ...formData,
+      [event.target.name]: event.target.value,
     }
+    setFormData(formdata)
   }
   
-  handleChange = event => {
-    const formData = {
-      ...this.state.formData,
-      [event.target.name]: event.target.value
-    }
-    this.setState({ formData })
-  }
-  
-  handleSubmit = async event => {
+  const handleSubmit = async event => {
     event.preventDefault()
-    const response = await loginUser(this.state.formData)
+    const response = await loginUser(formData)
     console.log(response)
     setToken(response.data.token)
-    this.props.history.push('/bigcat')
+    navigate('/bigcat')
   }
   
-  render() {
-    console.log(this.props)
-    const { email, password } = this.state.formData
-    return (
-      <section className="login-form-background">
-        <div className="container">
-          <div className="columns">
-            <form onSubmit={this.handleSubmit} className="login-form">
-              <div className="field">
-                <label className="label">Email</label>
-                <div className="control">
-                  <input
-                    className="input"
-                    placeholder="Email"
-                    name="email"
-                    value={email}
-                    onChange={this.handleChange}
-                  />
-                </div>
+  return (
+    <section className="login-form-background">
+      <div className="container">
+        <div className="columns">
+          <form onSubmit={handleSubmit} className="login-form">
+            <div className="field">
+              <label className="label">Email</label>
+              <div className="control">
+                <input
+                  className="input"
+                  placeholder="Email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
               </div>
-              <div className="field">
-                <label className="label">Password</label>
-                <div className="control">
-                  <input
-                    type="password"
-                    className="input"
-                    placeholder="Password"
-                    name="password"
-                    value={password}
-                    onChange={this.handleChange}
-                  />
-                </div>
+            </div>
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control">
+                <input
+                  type="password"
+                  className="input"
+                  placeholder="Password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
               </div>
-              <div className="field">
-                <button type="submit" className="login-button">Login</button>
-              </div>
-            </form>
-          </div>
+            </div>
+            <div className="field">
+              <button type="submit" className="login-button">Login</button>
+            </div>
+          </form>
         </div>
-      </section>
-    )
-  }
+      </div>
+    </section>
+  )
+
 }
 
 export default Login

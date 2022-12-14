@@ -26,6 +26,7 @@ class BigcatListView(APIView):
         if bigcat_to_create.is_valid():
             bigcat_to_create.save()
             return Response(bigcat_to_create.data, status=status.HTTP_201_CREATED)
+        print(bigcat_to_create.errors)
         return Response (bigcat_to_create.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 class BigcatDetailView(APIView):
@@ -54,6 +55,7 @@ class BigcatDetailView(APIView):
         if updated_bigcat.is_valid():
             updated_bigcat.save()
             return Response(updated_bigcat.data, status=status.HTTP_202_ACCEPTED)
+        print(updated_bigcat.errors)
         return Response(updated_bigcat.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
     def delete(self, request, pk):     #delete bigcat

@@ -1,3 +1,79 @@
 * {
   box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #eed4a8;
+}
+
+//Homepage
+
+$primary: #d6e7e2;
+
+.navbar-container {
+  background-color: #d9ad62;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  gap: 2px;
+}
+
+.navbar-wrapper .navbar-container .navbar-brand .navbar-object {
+  background-color: #d9ad62;
+}
+
+.navbar-brand .navbar-logo img {
+  background-color: #d9ad62;
+}
+
+.navbar-wrapper .navbar-container .navbar-end .navbar-object {
+  background-color: #d9ad62;
+}
+
+.navbar-end {
+  display: flex;
+  gap: 10px;
+  height: 100%;
+}
+
+.navbar-object {
+  text-decoration: none;
+  font-weight: 800;
+  padding-top: 10px;
+  height: 100%;
+  color: black;
+}
+
+.hero-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero {
+  background-image: url(/components/common/images/hero.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: lighten (5%);
+  padding: 40px;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-title {
+  font-size: 50px;
+  text-align: center;
+  width: 100%;
+  color: #212935;
+  padding: 100px;
+}
+
+.lead {
+  font-weight: 500;
+  color: hsl(208, 72%, 30%);
+  padding: 10px;
 }

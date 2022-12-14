@@ -1,7 +1,6 @@
-import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
 import { isAuthenticated, logout } from '../../lib/auth'
+import leo from './images/leo.jpg'
 
 const Navbar = () => {
 
@@ -10,20 +9,20 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="navbar is-success">
-      <div className="container">
+    <nav className="navbar-wrapper">
+      <div className="navbar-container">
         <div className="navbar-brand">
-          <a className="navbar-item" href="/">
-            <img src="https://bit.ly/35Ai3V8" width="30" height="30"/>          
+          <a className="navbar-logo" href="/">
+            <img src={leo} alt="Logo" width="30" height="30"/>          
           </a>
-          <Link to="/turtles" className="navbar-item has-text-black is-size-5">Shellbook</Link>
-          { isAuthenticated() && <Link to="/bigcat/new" className="navbar-item has-text-black is-size-5">Add Big Cat</Link>}
+          <Link to="/bigcat" className="navbar-object">Big Cat Pinterest</Link>
+          { isAuthenticated() && <Link to="/bigcat/new" className="navbar-object">Add Big Cat</Link>}
         </div>
         <div className="navbar-end">
-          { !isAuthenticated() && <Link to="/register" className="navbar-item has-text-black is-size-5">Register</Link> }
-          { !isAuthenticated() && <Link to="/login" className="navbar-item has-text-black is-size-5">Log in</Link> }
-          { isAuthenticated() && <Link to="/profile" className="navbar-item has-text-black is-size-5">Profile</Link> }
-          { isAuthenticated() && <Link to="/" onClick={handleLogout} className="navbar-item has-text-black is-size-5">Logout</Link>}
+          { !isAuthenticated() && <Link to="/register" className="navbar-object">Register</Link> }
+          { !isAuthenticated() && <Link to="/login" className="navbar-object">Log in</Link> }
+          { isAuthenticated() && <Link to="/profile" className="navbar-object">Profile</Link> }
+          { isAuthenticated() && <Link to="/" onClick={handleLogout} className="navbar-object">Logout</Link>}
         </div>
       </div>
     </nav>
@@ -31,4 +30,4 @@ const Navbar = () => {
 
 }
 
-export default withRouter(Navbar)
+export default (Navbar)
