@@ -20,7 +20,7 @@ const BigcatIndex = () => {
   return (
     <div className="section-index">
       <div className="columns-index">
-        { bigcats.length > 0 && bigcats.map(bigcat => <BigcatCard key={bigcat.id} {...bigcat} /> //bigcats.map
+        { bigcats.length > 0 && bigcats.map(bigcat => <BigcatCard key={bigcat.id} {...bigcat} />
         ) }
       </div>
     </div>

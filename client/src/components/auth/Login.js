@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { loginUser } from '../../lib/api'
 import { setToken } from '../../lib/auth'
 import { useNavigate } from 'react-router-dom'
+import login from '../common/images/login.png'
+
 
 const Login = () => {
 
@@ -65,6 +67,8 @@ const Login = () => {
           </form>
         </div>
       </div>
+      <img src={login} alt="login picture" width="650" height="300"/>          
+
     </section>
   )
 

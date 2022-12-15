@@ -31,8 +31,8 @@ const BigcatCreate = () => {
   }
 
   return (
-    <section className="new-section">
-      <div className="new-container">
+    <section className="bigcatcreate-section">
+      <div className="bigcatcreate-container">
         <BigcatForm 
           handleChange={handleChange}
           handleSubmit={handleSubmit}

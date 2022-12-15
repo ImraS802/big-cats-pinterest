@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { isAuthenticated, logout } from '../../lib/auth'
-import leo from './images/leo.jpg'
+import logo from './images/logo.png'
 
 const Navbar = () => {
 
@@ -13,10 +13,10 @@ const Navbar = () => {
       <div className="navbar-container">
         <div className="navbar-brand">
           <a className="navbar-logo" href="/">
-            <img src={leo} alt="Logo" width="30" height="30"/>          
+            <img src={logo} alt="Logo" width="50" height="50"/>          
           </a>
-          <Link to="/bigcat" className="navbar-object">Big Cat Pinterest</Link>
-          { isAuthenticated() && <Link to="/bigcat/new" className="navbar-object">Add Big Cat</Link>}
+          <Link to="/bigcat" className="navbar-object-bigcat">Big Cat Pinterest</Link>
+          { isAuthenticated() && <Link to="/bigcat/new" className="navbar-object-add">Add Big Cat</Link>}
         </div>
         <div className="navbar-end">
           { !isAuthenticated() && <Link to="/register" className="navbar-object">Register</Link> }

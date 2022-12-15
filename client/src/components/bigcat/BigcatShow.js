@@ -23,28 +23,23 @@ const BigcatShow = () => {
 
 
   const handleDelete = async () => {
-    // const bigcatId = props.match.params.id
     await deleteBigcat(id)
     navigate('/bigcat')
-    // await deleteBigcat(bigcatId)
-    // props.history.push('/bigcat')
   }
 
   
-  // const { bigcat } = this.state
-  // if ( !bigcat ) return null
   return (
     <section className="section-show">
-      <div className="container">
+      <div className="bicat-show-container">
         {
           bigcat && 
           <>
             <div className="box-show">
               <figure className="image-show">
-                <img src={bigcat.image} alt={bigcat.name} />
+                <img src={bigcat.image} alt={bigcat.name}  height="400"/>
               </figure>
             </div>
-            <div className="">
+            <div className="show-title">
               <h4 className="title-show">
                 Name
               </h4>
@@ -66,15 +61,15 @@ const BigcatShow = () => {
               <h4 className="title-show">
                 Added by 
               </h4>
-              <div>
+              <div className="two-show-buttons">
                 <h5 className="title-show-small">
                   {bigcat.owner.username}
                 </h5>
                 <br />
                 <h5>
-                  <Link to={`/bigcat/${bigcat.id}/edit`} className="edit-button-show"><strong>Edit</strong></Link>
+                  <Link to={`/bigcat/${bigcat.id}/edit`} className="edit-button-show">Edit</Link>
                   <br />
-                  <button onClick={handleDelete} className="delete-button-show"><strong>Delete</strong></button>
+                  <button onClick={handleDelete} className="delete-button-show">Delete</button>
                 </h5>
               </div>
             </div>

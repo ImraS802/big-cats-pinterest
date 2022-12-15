@@ -23,10 +23,10 @@ const ProfilePage = () => {
     <section>
       <div className="profile-column">
         <div className="profile-box">
-          <h4 className="profile-title">
+          <h4 className="profile-title-username">
             Username: 
           </h4>
-          <h6 className="profile-title">
+          <h6 className="profile-title-small">
             {userData.username}
           </h6>
         </div>
@@ -36,11 +36,11 @@ const ProfilePage = () => {
           </h4>
           <div>
             {userData.created_bigcats.map(bigcat => (
-              <div className="profile-title" key="bigcat">
+              <div className="profile-title-small" key="bigcat">
                 <p key={bigcat.name}><strong>{bigcat.name}</strong></p>
                 <br />
-                <div className="profile-column">
-                  <img className="" src={bigcat.image}></img>
+                <div className="profile-image">
+                  <img className="" src={bigcat.image} width="320" height="360"></img>
                 </div>
               </div>
             ))}
